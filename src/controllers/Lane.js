@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+jimport React, {Component} from 'react'
 import classNames from 'classnames'
 import PropTypes from 'prop-types'
 import {bindActionCreators} from 'redux'
@@ -31,10 +31,7 @@ class Lane extends Component {
       this.setState({loading: true})
       const nextPage = currentPage + 1
       onLaneScroll(nextPage, this.props.id).then(moreCards => {
-        if (!moreCards || moreCards.length === 0) {
-          // if no cards present, stop retrying until user action
-          node.scrollTop = node.scrollTop - 100
-        } else {
+        if (moreCards && moreCards.length !== 0) {
           this.props.actions.paginateLane({
             laneId: this.props.id,
             newCards: moreCards,
